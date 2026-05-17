@@ -1,0 +1,40 @@
+@import url('https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-neutral-50 text-neutral-900;
+  }
+}
+
+@layer components {
+  /* Typography */
+  .display-text {
+    @apply font-switzer font-bold text-[64px] leading-[68px] tracking-[-0.02em];
+  }
+  .heading-1 {
+    @apply font-switzer font-semibold text-[48px] leading-[52px] tracking-[-0.015em];
+  }
+  .heading-2 {
+    @apply font-switzer font-medium text-[32px] leading-[36px] tracking-[-0.01em];
+  }
+  .heading-3 {
+    @apply font-switzer font-medium text-[24px] leading-[28px] tracking-[-0.005em];
+  }
+  .body-large {
+    @apply font-inter font-normal text-[20px] leading-[28px] tracking-[0.04em];
+  }
+  .body-text {
+    @apply font-inter font-normal text-[16px] leading-[24px] tracking-[0.04em];
+  }
+  .label-text {
+    @apply font-inter font-medium text-[12px] leading-[16px] tracking-[0.04em];
+  }
+  .caption-text {
+    @apply font-inter font-normal text-[12px] leading-[16px] tracking-[0.02em];
+  }
+}

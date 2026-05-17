@@ -10,10 +10,11 @@ import {
   Calendar, File, Folder, ArrowRight, ArrowLeft, 
   CaretRight, CaretLeft, Minus, X, Check, 
   WarningCircle, Info, Question, Pulse, 
-  ChartPie, TrendUp, CurrencyDollar, Briefcase 
+  ChartPie, TrendUp, CurrencyDollar, Briefcase, List
 } from '@phosphor-icons/react';
 
 export const DesignSystem = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const colors = {
     brand: [
       { name: 'Green-20', hex: '#F0FAF4', textColor: 'text-green-900' },
@@ -51,9 +52,22 @@ export const DesignSystem = () => {
 
   return (
     <div className="flex min-h-screen bg-neutral-50 w-full">
-      <Sidebar />
+      <Sidebar mobileOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
 
-      <main className="flex-1 px-4 md:px-12 py-16">
+      <div className="flex-1 flex flex-col min-h-0 relative w-full">
+        {/* Sleek Mobile Header */}
+        <header className="md:hidden flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-[#FAFAF8] sticky top-0 z-30">
+          <h2 className="font-switzer font-bold text-[20px] text-green-600 tracking-[-0.02em]">Stride</h2>
+          <button 
+            onClick={() => setMobileMenuOpen(true)}
+            className="text-neutral-500 hover:text-green-600 hover:bg-neutral-100 p-2 rounded-lg transition-colors"
+            aria-label="Open navigation menu"
+          >
+            <List size={22} weight="bold" />
+          </button>
+        </header>
+
+        <main className="flex-1 px-4 md:px-12 py-16">
         <div className="max-w-[1200px] mx-auto">
           <header className="mb-16">
             <h1 className="display-text text-green-700 mb-4">Stride Design System</h1>
@@ -336,6 +350,8 @@ export const DesignSystem = () => {
           </div>
         </div>
       </main>
+      </div>
     </div>
   );
 };
+

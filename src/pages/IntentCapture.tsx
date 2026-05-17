@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Chip } from '../components/Chip';
-import { PaperPlaneRight, X, ArrowRight } from '@phosphor-icons/react';
+import { PaperPlaneRight, X, ArrowRight, List } from '@phosphor-icons/react';
 import { cn } from '../components/Button';
 import { useStrideStore } from '../store/useStrideStore';
 
 export const IntentCapture = () => {
   const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [inputValue, setInputValue] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const setIntentText = useStrideStore(state => state.setIntentText);
 
   const handleSubmit = () => {
@@ -21,12 +22,25 @@ export const IntentCapture = () => {
   return (
     <div className="flex min-h-screen bg-neutral-50 font-inter">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar mobileOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col relative">
+        {/* Sleek Mobile Header */}
+        <header className="md:hidden flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-[#FAFAF8] sticky top-0 z-30">
+          <h2 className="font-switzer font-bold text-[20px] text-green-600 tracking-[-0.02em]">Stride</h2>
+          <button 
+            onClick={() => setMobileMenuOpen(true)}
+            className="text-neutral-500 hover:text-green-600 hover:bg-neutral-100 p-2 rounded-lg transition-colors"
+            aria-label="Open navigation menu"
+          >
+            <List size={22} weight="bold" />
+          </button>
+        </header>
+
         {/* Pilot Banner */}
         {isBannerVisible && (
+
           <div className="py-2.5 bg-semantic-warning/10 w-full flex items-center px-4 relative">
              <div className="flex-1 flex items-center justify-center gap-2">
                <p className="text-[12px] text-semantic-warning font-inter uppercase tracking-widest">

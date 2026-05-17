@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sidebar } from '../components/Sidebar';
-import { PaperPlaneRight } from '@phosphor-icons/react';
+import { PaperPlaneRight, List } from '@phosphor-icons/react';
 import { useStrideStore, BufferOption, HorizonOption } from '../store/useStrideStore';
 import { cn } from '../components/Button';
 
@@ -10,6 +10,7 @@ export const ClarifyingQuestions = () => {
   const [q2Answered, setQ2Answered] = useState(horizon !== null);
   const [otherBuffer, setOtherBuffer] = useState('');
   const [otherHorizon, setOtherHorizon] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const handleQ1Select = (val: BufferOption) => {
     setBuffer(val);
@@ -78,8 +79,20 @@ export const ClarifyingQuestions = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-neutral-50 font-inter">
-      <Sidebar />
+      <Sidebar mobileOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
       <div className="flex-1 flex flex-col relative items-center h-full min-h-0">
+        
+        {/* Sleek Mobile Header */}
+        <header className="md:hidden w-full flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-[#FAFAF8] shrink-0 z-30">
+          <h2 className="font-switzer font-bold text-[20px] text-green-600 tracking-[-0.02em]">Stride</h2>
+          <button 
+            onClick={() => setMobileMenuOpen(true)}
+            className="text-neutral-500 hover:text-green-600 hover:bg-neutral-100 p-2 rounded-lg transition-colors"
+            aria-label="Open navigation menu"
+          >
+            <List size={22} weight="bold" />
+          </button>
+        </header>
         
         {/* Progression Blur Top Mask */}
         <div className="absolute top-0 w-full h-[80px] bg-gradient-to-b from-neutral-50 via-neutral-50/80 to-transparent z-10 pointer-events-none" />
